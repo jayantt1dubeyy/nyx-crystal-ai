@@ -15,6 +15,39 @@ At its core runs a **completely deterministic math engine** (the kernel) – the
 
 ---
 
+## ▶️ See it in action — a worked example
+
+![Nyx demo: agent reputations over 8 rounds](docs/demo.gif)
+
+**Question:** *"Should we ban smartphones in schools?"* — 6 agents
+(Maya, student; Mr. Rao, teacher; Mrs. Khan, parent; Principal; Dev,
+student; Dr. Iyer, researcher), seed `42`, 8 rounds. The GIF above is
+the actual run: one frame per round of agent reputations.
+
+**What happens, round by round:**
+
+- The group converges fast: mean reputation climbs 0.50 → 0.65 → 0.84 →
+  0.93 → 0.98 → 0.98 → 1.00 → 1.00.
+- The story is Dev, the anxious student (starting anxiety 0.7). He
+  cascades in rounds 4–5 — the red bar — then recovers from round 6.
+  Nobody else crashes.
+- **Final outcome vector:** reputation_mean 1.00, inequality 0.069,
+  trust_proxy 0.714, centralization 0.139.
+
+**Run it yourself (deterministic — same seed, same numbers):**
+
+```bash
+python examples/smartphone_ban.py
+```
+
+Or any question with the kernel directly:
+
+```bash
+python public/nyx_kernel.py --seed 42 --scenario "ban smartphones in schools" --agents 12
+```
+
+---
+
 ## 🔮 The Advanced Toggle & Full Control
 
 **Don't forget to turn on the Advanced Toggle** in the live app – it's the gateway to the engine's full power.  
@@ -118,8 +151,8 @@ Visit [nyx-crystal-ai.lovable.app](https://nyx-crystal-ai.lovable.app/).
 
 ### 💻 Local Kernel
 ```bash
-git clone https://github.com/your-username/nyx.git
-cd nyx
+git clone https://github.com/jayantt1dubeyy/nyx-crystal-ai.git
+cd nyx-crystal-ai
 python public/nyx_kernel.py --seed 42 --scenario "ban smartphones in schools" --agents 12
 ```
 You'll get a JSON object with the full state history and outcome vector.
