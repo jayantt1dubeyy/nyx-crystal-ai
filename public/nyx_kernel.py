@@ -227,3 +227,39 @@ def run_simulation(scenario: dict, rounds: int = 3, seed: int = 42) -> dict:
         "centralization": sum(abs(W.get(src, {}).get(tgt, 0)) for src in agents for tgt in agents) / max(len(agents)**2, 1),
     }
     return {"state_history": state_history, "outcome_vector": outcome, "seed": seed}
+
+
+# ---------------------------------------------------------------------------
+# Minimal standalone CLI — makes the documented command work:
+#   python public/nyx_kernel.py --seed 42 --scenario "..." --agents 12
+# This only wraps run_simulation; it does not change the math.
+# ---------------------------------------------------------------------------
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Nyx deterministic kernel (standalone run)")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--rounds", type=int, default=8)
+    parser.add_argument("--scenario", default="ban smartphones in schools")
+    parser.add_argument("--agents", type=int, default=6)
+    parser.add_argument("--out", default=None,
+                        help="write JSON here instead of stdout")
+    args = parser.parse_args()
+
+    _roles = ["Student", "Teacher", "Parent", "Principal",
+              "Researcher", "Policymaker"]
+    _scenario = {
+        "question": args.scenario,
+        "agents": [{"name": f"Agent {i + 1}",
+                    "role": _roles[i % len(_roles)]}
+                   for i in range(args.agents)],
+        "influence_network": {},
+    }
+    _result = run_simulation(_scenario, rounds=args.rounds, seed=args.seed)
+    _text = json.dumps({"question": args.scenario, **_result}, indent=2)
+    if args.out:
+        with open(args.out, "w") as fh:
+            fh.write(_text + "\n")
+    else:
+        print(_text)
