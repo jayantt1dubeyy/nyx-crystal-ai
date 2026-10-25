@@ -3,6 +3,7 @@
 > A deterministic future simulator for hard choices.  
 > **Live App:** [nyx-crystal-ai.lovable.app](https://nyx-crystal-ai.lovable.app/)
 
+> 🐼 New here? Start with the [beginner explainer](docs/EXPLAINED_FOR_BEGINNERS.md) — plain language, with the seed-42 worked example.
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://nyx-crystal-ai.lovable.app/)
 [![Deterministic Kernel](https://img.shields.io/badge/Kernel-Deterministic-blue)](./public/nyx_kernel.py)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
