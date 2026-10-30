@@ -1,3 +1,7 @@
+![Nyx header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=180&section=header&text=Nyx%20Decision%20Intelligence&fontSize=42&animation=fadeIn)
+
+![Typing](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F472B6&width=650&lines=A+flight+simulator+for+hard+choices.;Same+seed,+same+outcome.+Always.;Debate,+cascade,+recover,+forecast.)
+
 # Nyx – The Decision Intelligence Simulator
 
 > A deterministic future simulator for hard choices.  
@@ -202,3 +206,34 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 **Nyx is a flight simulator for your hardest choices – now fully explained, inside and out.**  
 *Turn on the Advanced Toggle and engineer the future.*
+
+---
+
+## 🗺️ Project map
+
+```mermaid
+flowchart TD
+    Q["A hard question — e.g. ban smartphones in schools"] --> APP["Live web app — src/ + public/ (Vite, TypeScript)"]
+    APP --> KERN["public/nyx_kernel.py — deterministic kernel, one file"]
+    KERN --> LOOP["Round loop — perception, cognition, intent, resolution"]
+    LOOP --> OUT["state_history + outcome_vector (reputation, inequality, trust, centralization)"]
+    OUT --> FEAT["Features — counterfactuals, BlackSwan, leverage map, Nash/Pareto, CFR, replay"]
+    EX["examples/smartphone_ban.py — seed-42 worked example"] --> KERN
+    ADV["Advanced Toggle — seed control, batch trials, kernel inspection"] --> KERN
+```
+
+## 📊 At a glance (verified 30 Oct 2026)
+
+| Measure | Value |
+|---|---|
+| What | Deterministic future simulator for hard choices — a miniature society of AI agents that debate, feel, influence, and occasionally crash |
+| Live app | nyx-crystal-ai.lovable.app |
+| Kernel | public/nyx_kernel.py — a single Python file; same seed gives the same result on any computer, forever; runs in the browser via Pyodide, no server required |
+| Round loop | Perception → cognition → intent emission → world resolution |
+| Agents | 10 psychological variables in [0,1]: self-worth, anxiety, consistency, momentum, reputation, opportunity access, fragility index, lock-in, learning rate, energy |
+| Worked example | "Ban smartphones in schools", 6 agents, seed 42, 8 rounds; mean reputation 0.50 → 0.65 → 0.84 → 0.93 → 0.98 → 0.98 → 1.00 → 1.00 |
+| The story in it | Dev, the anxious student (starting anxiety 0.7), cascades in rounds 4–5, then recovers from round 6; nobody else crashes |
+| Final outcome vector | reputation_mean 1.00, inequality 0.069, trust_proxy 0.714, centralization 0.139 |
+| Features | 16: counterfactual engine, BlackSwan Assassin, leverage map, sentiment ridge, influence flow, narrative timeline, agent drill-down, importance heatmap, game theory, multi-trial aggregation, probabilistic forecasts, sensitivity analysis, validation suite, dynamical primitives, episodic replay, CFR |
+| Honest limit | Probabilistic forecasts are simulation-internal, not real-world validated (stated in the README) |
+| License | README states MIT; no LICENSE file at the repo root |
